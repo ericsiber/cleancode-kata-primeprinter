@@ -19,6 +19,26 @@ public class PrimePrinterHelper {
     private int square = 9;
     private int n = 0;
 
+
+    public void printPrimes(int[] primes, int numberOfPrimes){
+
+        while (pageoffset <= numberOfPrimes) {
+            System.out.print("The First ");
+            System.out.print(Integer.toString(numberOfPrimes));
+            System.out.print(" Prime Numbers === Page ");
+            System.out.print(Integer.toString(pagenumber));
+            System.out.println("\n");
+            for (rowoffset = pageoffset; rowoffset <= pageoffset + linesPerPage - 1; rowoffset++) {
+                for (column = 0; column <= columns - 1; column++)
+                    if (rowoffset + column * linesPerPage <= numberOfPrimes)
+                        System.out.printf("%10d", primes[rowoffset + column * linesPerPage]);
+                System.out.println();
+            }
+            System.out.println("\f");
+            pagenumber++;
+            pageoffset += linesPerPage * columns;
+        }
+    }
     public void print() {
         primes[1] = 2;
 
@@ -44,22 +64,6 @@ public class PrimePrinterHelper {
             primes[primeIndex] = candidate;
         }
 
-        while (pageoffset <= numberOfPrimes) {
-            System.out.print("The First ");
-            System.out.print(Integer.toString(numberOfPrimes));
-            System.out.print(" Prime Numbers === Page ");
-            System.out.print(Integer.toString(pagenumber));
-            System.out.println("\n");
-            for (rowoffset = pageoffset; rowoffset <= pageoffset + linesPerPage - 1; rowoffset++) {
-                for (column = 0; column <= columns - 1; column++)
-                    if (rowoffset + column * linesPerPage <= numberOfPrimes)
-                        System.out.printf("%10d", primes[rowoffset + column * linesPerPage]);
-                System.out.println();
-            }
-            System.out.println("\f");
-            pagenumber++;
-            pageoffset += linesPerPage * columns;
-
-        }
+        printPrimes(primes, numberOfPrimes);
     }
 }
