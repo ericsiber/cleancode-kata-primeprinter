@@ -2,7 +2,7 @@ package com.cleancode.knuth;
 
 public class PrimePrinter {
     public static void main(String[] args) {
-        new PrimePrinterHelper().invoke();
+        new PrimePrinterHelper().generatePrimes();
     }
     public static int numberOfPrimes = 1000;
 
